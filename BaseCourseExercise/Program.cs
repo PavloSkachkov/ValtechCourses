@@ -8,13 +8,20 @@ namespace BaseCourseExercise
         static void Main(string[] args)
         {
             List<Word> wordsList = new List<Word>();
+            List<string> textList = new List<string>();
             Dictionary<string, int> wordsDictionary = new Dictionary<string, int>();
             char[] separators = { ' ', ',', '.', ':', '–', '\t', '\n' };
             int lineCounter = 0;
             int positionCounter = 0;
 
-
-            List<string> textList = WordHandler.fileRead(args[0]);
+            try
+            {
+                textList = WordHandler.fileRead(args[0]);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
 
             foreach (var sentence in textList)
             {
