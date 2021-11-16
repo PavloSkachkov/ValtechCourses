@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace BaseCourseExercise
 {
@@ -10,39 +11,26 @@ namespace BaseCourseExercise
             List<Word> wordsList = new List<Word>();
             List<string> textList = new List<string>();
             Dictionary<string, int> wordsDictionary = new Dictionary<string, int>();
-            char[] separators = { ' ', ',', '.', ':', '–', '\t', '\n' };
-            int lineCounter = 0;
-            int positionCounter = 0;
 
             try
             {
-                textList = WordHandler.fileRead(args[0]);
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
+                Console.WriteLine("Please enter a path to file");
+                string filePath = Console.ReadLine();
+                bool inputCorrect = File.Exists(filePath) && Path.GetExtension(filePath) == ".txt";
+                if (inputCorrect)
+                    textList = WordHandler.fileRead(filePath);
 
-            foreach (var sentence in textList)
-            {
-                lineCounter++;
-                string[] words = sentence.Split(separators, StringSplitOptions.RemoveEmptyEntries);
-                foreach (var word in words)
+                else
                 {
-                    if (!wordsDictionary.ContainsKey(word))
-                    {
-                        wordsDictionary.Add(word, 1);
-                    }
-                    else
-                    {
-                        wordsDictionary[word] += 1;
-                    }
-
-                    positionCounter++;
-                    Word currentWord = new Word(word, lineCounter, positionCounter);
-                    wordsList.Add(currentWord);
+                    throw new Exception();
                 }
             }
+            catch (Exception)
+            {
+                Console.WriteLine("Incorrect file input");
+            }
+
+            WordHandler.fillListAndDictionary(textList, wordsDictionary, wordsList);
 
             WordHandler.printDublicats(wordsDictionary);
 
