@@ -23,6 +23,33 @@ namespace BaseCourseExercise
             return textList;
         }
 
+        public static void fillListAndDictionary(List<string> textList, ref Dictionary<string, int> wordsDictionary, ref List<Word> wordsList)
+        {
+            char[] separators = { ' ', ',', '.', ':', '–', '\t', '\n' };
+            int lineCounter = 0;
+            int positionCounter = 0;
+            foreach (string sentence in textList)
+            {
+                lineCounter++;
+                string[] words = sentence.Split(separators, StringSplitOptions.RemoveEmptyEntries);
+                foreach (string word in words)
+                {
+                    if (!wordsDictionary.ContainsKey(word))
+                    {
+                        wordsDictionary.Add(word, 1);
+                    }
+                    else
+                    {
+                        wordsDictionary[word] += 1;
+                    }
+
+                    positionCounter++;
+                    Word currentWord = new Word(word, lineCounter, positionCounter);
+                    wordsList.Add(currentWord);
+                }
+            }
+        }
+
         public static void printDublicats(Dictionary<string, int> wordsDictionary)
         {
             foreach (var word in wordsDictionary.OrderByDescending(word => word.Value))

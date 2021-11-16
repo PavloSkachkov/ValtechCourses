@@ -11,7 +11,6 @@ namespace BaseCourseExercise
         public string Name { get; set; }
         public int Line { get; set; }
         public int Position { get; set; }
-
         public Word(string name, int lineCounter, int positionCounter)
         {
             Name = name;
@@ -22,6 +21,6 @@ namespace BaseCourseExercise
         {
             return "Word: " + Name + " Line: " + Line + " Position: " + Position;
         }
-
+        
     }
 }
