@@ -25,12 +25,12 @@ namespace BaseCourseExercise
                     throw new Exception();
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Console.WriteLine("Incorrect file input");
             }
 
-            WordHandler.fillListAndDictionary(textList, ref wordsDictionary, ref wordsList);
+            WordHandler.fillListAndDictionary(textList, wordsDictionary, wordsList);
 
             WordHandler.printDublicats(wordsDictionary);
 

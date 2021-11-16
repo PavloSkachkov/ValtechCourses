@@ -23,7 +23,7 @@ namespace BaseCourseExercise
             return textList;
         }
 
-        public static void fillListAndDictionary(List<string> textList, ref Dictionary<string, int> wordsDictionary, ref List<Word> wordsList)
+        public static void fillListAndDictionary(List<string> textList, Dictionary<string, int> wordsDictionary, List<Word> wordsList)
         {
             char[] separators = { ' ', ',', '.', ':', '–', '\t', '\n' };
             int lineCounter = 0;
